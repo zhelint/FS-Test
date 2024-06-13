@@ -1,0 +1,38 @@
+{% extends 'layouts/base.html' %}
+{% block title %}Daftar Barang{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Daftar Barang</h2>
+            <a 
+                hx-get="{% url 'add_barang' %}" 
+                hx-target="#dialog" class="btn btn-primary mb-3">
+                <i class="fa fa-plus"></i>
+                &nbsp; Tambah
+            </a>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Barang</th>
+                        <th>Merk</th>
+                        <th>Kategori</th>
+                        <th>Stok</th>
+                        <th>Prefix</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody 
+                    id="tbl-barang" 
+                    hx-get={% url 'disp_barang' %} 
+                    hx-trigger="load, barangListReload from:body">
+                    <tr>
+                        <td colspan="7" class="text-center">Loading...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
