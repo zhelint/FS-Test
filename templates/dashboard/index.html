@@ -1,0 +1,71 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h2>Dashboard</h2>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col">
+            {% include 'dashboard/includes/jumlah_barang.html' %}
+        </div>
+    </div>
+</div>
+<div class="container overflow-hidden">
+    <div class="row gx-5">
+        <div class="col">
+            <div class="card">
+                <div class="card-header bg-white">
+                    <h6 class="text-center"><strong>Barang Bagus</strong></h6>
+                </div>
+                <div class="card-body">
+                    {% include 'dashboard/includes/chart-1.html' %}
+                </div>
+                {% comment %} {% include 'dashboard/includes/chart-1.html' %} {% endcomment %}
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-header bg-white">
+                    <h6 class="text-center"><strong>Barang Rusak</strong></h6>
+                </div>
+                <div class="card-body">
+                    {% include 'dashboard/includes/chart-2.html' %}
+                </div>
+        </div>
+    </div>
+</div>
+<div class="container my-5">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header bg-white">
+                    <h6 class="text-center"><strong>Perlu Perbaikan</strong></h6>
+                </div>
+                <div class="card-body">
+                    {% include 'dashboard/includes/chart-3.html' %}
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-header bg-white">
+                    <h6 class="text-center"><strong>Dalam Perbaikan</strong></h6>
+                </div>
+                <div class="card-body">
+                    {% include 'dashboard/includes/chart-4.html' %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+            
+
+
+{% endblock %}
+
+{% block scripts %}
+    
+{% endblock %}
