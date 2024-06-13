@@ -1,0 +1,41 @@
+
+<div>
+    {% if dlm_perbaikan_count > 0 %}
+        <canvas id="chart-4"></canvas>
+    {% else %}
+        <div class="justify-content-center"><p>Tidak ada data</p></div>
+    {% endif %}
+</div>
+<!-- check if data is available -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    $(document).ready(function(){
+        const ctx = document.getElementById('chart-4');
+
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: [
+                    {% for item in brg_dlm_perbaikan %}
+                    '{{ item.kelompok__nama_barang }} ({{ item.total }})',
+                    {% endfor %}
+                ],
+                datasets: [{
+                    label: "barang",
+                    data: [{% for item in brg_dlm_perbaikan %}{{ item.total }},{% endfor %}],
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                      position: "right",
+                      align: "center",
+                  }
+                }
+            }
+        });
+    });
+</script>
