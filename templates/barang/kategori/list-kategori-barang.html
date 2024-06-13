@@ -1,0 +1,42 @@
+{% if page_obj %}
+    {% for kategori in page_obj %}
+        {% with continuous_counter=page_obj.start_index|add:forloop.counter0 %}
+        <tr class="list-kategori">
+            <td>{{ continuous_counter }}</td>
+            <td>{{ kategori.nama }}</td>
+            <td>
+                <a 
+                    hx-get="{% url 'update_kategori_barang' kategori.id %}" 
+                    hx-target="#dialog" 
+                    class="btn btn-warning">
+                    <i class="fa-solid fa-pen"></i>
+                </a>
+                <a 
+                    hx-delete="{% url 'delete_kategori_barang' kategori.id %}" 
+                    hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'
+                    hx-confirm="Hapus kategori {{ kategori.nama }}?" 
+                    hx-target="#tbl-kategori"
+                    class="btn btn-danger">
+                    <i class="fa-solid fa-trash"></i>
+                </a>
+            </td>
+        </tr>
+        {% endwith %}
+
+        {% if page_obj.has_next and forloop.last  %}
+            <!-- list more articles using htmx with the trigger revealed -->
+            <tr
+                class="list-kategori"
+                hx-get="{% url 'disp_kategori_barang' %}?page={{ page_obj.next_page_number }}"
+                hx-swap="beforeend"
+                hx-trigger="revealed"
+                hx-target="#tbl-kategori"
+                hx-select=".list-kategori">
+            </tr>
+        {% endif %}
+    {% endfor %}
+{% else %}
+    <tr>
+        <td colspan="3">No data</td>
+    </tr>
+{% endif %}
