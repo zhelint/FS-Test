@@ -1,0 +1,63 @@
+<div class="row">
+    <!-- create column of 3-->
+    <div class="col">
+        <div class="card bg-info">
+            <div class="row card-body">
+                <div class="col-4 d-none d-md-block d-flex align-items-center">
+                    <i class="fa-solid fa-check-circle fa-3x text-light"></i>
+                </div>
+                <div class="col-8 d-flex align-items-center">
+                    <div>
+                        <p class="card-title text-light"><b>Barang Bagus</b></p>
+                        <h3 class="card-text text-light"><b>{{ bagus_count }}</b></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card bg-danger">
+            <div class="row card-body">
+                <div class="col-4 d-none d-md-block d-flex align-items-center">
+                    <i class="fa-solid fa-house-chimney-crack fa-3x text-light"></i>                
+                </div>
+                <div class="col-8 d-flex align-items-center">
+                    <div>
+                        <p class="card-title text-light"><b>Barang Rusak</b></p>
+                        <h3 class="card-text text-light"><b>{{ rusak_count }}</b></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card bg-warning">
+            <div class="row card-body">
+                <div class="col-4 d-none d-md-block d-flex align-items-center">
+                    <i class="fa-solid fa-exclamation-triangle fa-3x text-light"></i>
+                </div>
+                <div class="col-8 d-flex align-items-center">
+                    <div>
+                        <p class="card-title text-light"><b>Perlu Perbaikan</b></p>
+                        <h3 class="card-text text-light"><b>{{ perlu_perbaikan_count }}</b></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card bg-success">
+            <div class="row card-body">
+                <div class="col-4 d-none d-md-block d-flex align-items-center">
+                    <i class="fa-solid fa-wrench fa-3x text-light"></i>
+                </div>
+                <div class="col-8 d-flex align-items-center">
+                    <div>
+                        <p class="card-title text-light"><b>Dalam Perbaikan</b></p>
+                        <h3 class="card-text text-light"><b>{{ dlm_perbaikan_count }}</b></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
