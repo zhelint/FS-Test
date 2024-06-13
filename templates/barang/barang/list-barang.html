@@ -1,0 +1,54 @@
+{% if page_obj %}
+    {% for barang in page_obj %}
+        <!-- To continue the number in the loop. Otherwise, it will restart 
+            to 1 in the next page. Not sure how it will affect the performance -->
+        {% with continuous_counter=page_obj.start_index|add:forloop.counter0 %}
+        <tr class="lst-barang">
+            <td>{{ continuous_counter }}</td>
+            <td>{{ barang.nama_barang }}</td>
+            <td>{{ barang.merk }}</td>
+            <td>{{ barang.kategori.nama }}</td>
+            <td>{{ barang.stok }}</td>
+            <td>{{ barang.prefix }}</td>
+            <td>
+                <a 
+                href="{% url 'disp_satuan_barang' barang.id %}" 
+                class="btn btn-success">
+                <i class="fa-solid fa-list"></i>
+                </a>
+                <a 
+                    hx-get="{% url 'update_barang' barang.id %}"
+                    hx-target="#dialog"
+                    class="btn btn-warning">
+                    <i class="fa-solid fa-pen"></i>
+                </a>
+                <a 
+                    hx-delete="{% url 'delete_barang' barang.id %}"
+                    hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'
+                    hx-confirm="Hapus barang "{{ barang.nama_barang }}"?" 
+                    hx-target="#tbl-barang"
+                    class="btn btn-danger">
+                    <i class="fa-solid fa-trash"></i>
+                </a>
+            </td>
+        </tr>
+        {% endwith %}
+        <!-- if there is a next page and it is the last loop, then load more articles -->
+        {% if page_obj.has_next and forloop.last  %}
+        <!-- list more articles using htmx with the trigger revealed -->
+            <tr
+                class="lst-barang"
+                hx-get="{% url 'disp_barang' %}?page={{ page_obj.next_page_number }}" 
+                hx-swap="beforeend"  
+                hx-trigger="revealed" 
+                hx-target="#tbl-barang"
+                hx-select=".lst-barang">
+            </tr>
+        {% endif %}
+    {% endfor %}
+    
+{% else %}
+    <tr>
+        <td>No data</td>
+    </tr>
+{% endif %}
