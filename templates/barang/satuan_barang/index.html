@@ -1,0 +1,39 @@
+{% extends 'layouts/base.html' %}
+{% load partials %}
+
+
+{% block title %}Daftar Satuan Barang{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Daftar "{{ nama_barang }}" </h2>
+            <a 
+                hx-get="{% url 'add_satuan_barang' barang_id %}" 
+                hx-target="#dialog"
+                class="btn btn-primary mb-3">
+                <i class="fa fa-plus"></i>
+                &nbsp; Tambah
+            </a>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Kode Barang Satuan</th>
+                        <th>Kondisi</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody 
+                    id="tbl-satuan" 
+                    hx-get="{% url 'disp_satuan_barang' barang_id %}"
+                    hx-trigger="load, satuanListReload from:body">
+                    <tr>
+                        <td colspan="3" class="text-center">Loading...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
