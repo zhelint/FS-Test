@@ -1,0 +1,47 @@
+body {
+    display: flex;
+}
+.sidebar {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    background-color: #262B40;
+    padding-top: 60px; /* Make sure to adjust this based on the height of your header */
+}
+.content {
+    padding: 20px;
+    margin-left: 250px;
+    padding-top: 50px;
+    width: calc(100% - 250px); /* Adjust content width to account for sidebar */
+}
+@media (max-width: 992px) {
+    .sidebar {
+        display: none;
+    }
+    .content {
+        margin-left: 0;
+        width: 100%; /* Full width on smaller screens */
+    }
+}
+
+.sidebar a {
+    display: block;
+    /* padding: 10px 15px; */
+    color: #fff;
+    text-decoration: none;
+}
+
+.sidebar i {
+    margin-right: 10px;
+}
+
+.bg-white {
+    background-color: #fff !important;
+}
+
+.bg-light {
+    background-color: #f2f2f2 !important;
+}
+
