@@ -1,0 +1,37 @@
+{% load widget_tweaks %}
+{% with WIDGET_ERROR_CLASS='is-invalid' %}
+<form hx-post="{{ request.path }}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}' class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title">Tambah Barang</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <div class="mb-3">
+      <label for="{{ form.nama_barang.id_for_label }}" class="form-label">Nama Barang</label>
+      {% render_field form.nama_barang class="form-control" placeholder="Cth: Kompor" %}
+      <div class="invalid-feedback">{{ form.nama_barang.errors|first }}</div>
+    </div>
+    <div class="mb-3">
+        <label for="{{ form.merk.id_for_label }}" class="form-label">Merk</label>
+        {% render_field form.merk class="form-control" placeholder="Cth: Cosmos" %}
+        <div class="invalid-feedback">{{ form.merk.errors|first }}</div>
+      </div>
+      <div class="mb-3">
+        <label for="{{ form.kategori.id_for_label }}" class="form-label">Kategori</label>
+        {% render_field form.kategori class="form-control" placeholder="---" %}
+        <div class="invalid-feedback">{{ form.kategori.errors|first }}</div>
+      </div>
+      <div class="mb-3">
+        <label for="{{ form.stok.id_for_label }}" class="form-label">Stok</label>
+        {% render_field form.stok class="form-control" placeholder="0" %}
+        <div class="invalid-feedback">{{ form.stok.errors|first }}</div>
+      </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+      Cancel
+    </button>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </div>
+</form>
+{% endwith %}
