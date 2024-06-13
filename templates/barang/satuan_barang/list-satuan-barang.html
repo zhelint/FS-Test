@@ -1,0 +1,44 @@
+{% if page_obj %}
+    {% for satuan_barang in page_obj %}
+    {% with continuous_counter=page_obj.start_index|add:forloop.counter0 %}
+    <!-- Check if it's the first page -->
+    
+    <tr class="list-satuan">
+        <td>{{ continuous_counter }}</td>
+        <td>{{ satuan_barang.kode_barang }}</td>
+        <td>{{ satuan_barang.get_kondisi_display }}</td>
+        <td>
+            <a 
+                hx-get="{% url 'update_satuan_barang' satuan_barang.id %}"
+                hx-target="#dialog"
+                class="btn btn-warning">
+                <i class="fa-solid fa-pen"></i>
+            </a>
+            <a  
+                hx-delete="{% url 'delete_satuan_barang' satuan_barang.id %}" 
+                hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'
+                hx-confirm="Hapus {{ satuan_barang.kode_barang }}?" 
+                hx-target="#tbl-satuan"
+                class="btn btn-danger">
+                <i class="fa-solid fa-trash"></i>
+            </a>
+        </td>
+    </tr>
+    {% endwith %}
+    {% if page_obj.has_next and forloop.last  %}
+        <!-- list more articles using htmx with the trigger revealed -->
+        <tr
+            class="list-satuan"
+            hx-get="{% url 'disp_satuan_barang' barang_id=satuan_barang.kelompok.id %}?page={{ page_obj.next_page_number }}" 
+            hx-swap="beforeend"  
+            hx-trigger="revealed" 
+            hx-target="#tbl-satuan"
+            hx-select=".list-satuan">
+        </tr>
+    {% endif %}
+    {% endfor %}
+{% else %}
+    <tr>
+        <td colspan="4">No data</td>
+    </tr>    
+{% endif %}
