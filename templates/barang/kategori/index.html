@@ -1,0 +1,37 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Kategori Barang{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Kategori Barang</h2>
+            <a 
+                hx-get="{% url 'add_kategori_barang' %}" 
+                hx-target="#dialog" 
+                class="btn btn-primary mb-3">
+                <i class="fa fa-plus"></i>
+                &nbsp; Tambah
+            </a>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Kategori</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody 
+                    id="tbl-kategori" 
+                    hx-get={% url 'disp_kategori_barang' %} 
+                    hx-trigger="load, kategoriListReload from:body">
+                    <tr>
+                        <td colspan="3" class="text-center">Loading...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
